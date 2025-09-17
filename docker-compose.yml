@@ -1,0 +1,147 @@
+version: "3.8"
+
+services:
+  # -------------------
+  # Discovery Service (Eureka)
+  # -------------------
+  discovery-service:
+    image: ecommerce/discovery-service:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - ecommerce-network
+
+  # -------------------
+  # API Gateway
+  # -------------------
+  api-gateway:
+    image: ecommerce/api-gateway:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - discovery-service
+    networks:
+      - ecommerce-network
+
+  # -------------------
+  # User Service
+  # -------------------
+  user-service:
+    image: ecommerce/user-service:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/usersdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - postgres
+      - discovery-service
+      - kafka
+    networks:
+      - ecommerce-network
+
+  # -------------------
+  # Catalog Service
+  # -------------------
+  catalog-service:
+    image: ecommerce/catalog-service:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/catalogdb
+    depends_on:
+      - mongo
+      - discovery-service
+    networks:
+      - ecommerce-network
+
+  # -------------------
+  # Order Service
+  # -------------------
+  order-service:
+    image: ecommerce/order-service:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ordersdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - postgres
+      - kafka
+      - discovery-service
+    networks:
+      - ecommerce-network
+
+  # -------------------
+  # PostgreSQL
+  # -------------------
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: usersdb
+    ports:
+      - "5432:5432"
+    networks:
+      - ecommerce-network
+
+  # -------------------
+  # MongoDB
+  # -------------------
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    networks:
+      - ecommerce-network
+
+  # -------------------
+  # Kafka (avec Zookeeper)
+  # -------------------
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.10
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - ecommerce-network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.10
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge
