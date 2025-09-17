@@ -1,4 +1,9 @@
+server:
+  port: 8084
+
 spring:
+  application:
+    name: order-service
   datasource:
     url: jdbc:postgresql://localhost:5432/orderdb
     username: postgres
@@ -9,3 +14,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
