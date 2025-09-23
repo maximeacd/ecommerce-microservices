@@ -1,21 +1,43 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
     name: catalog-service
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.1
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/catalogdb
+    url: jdbc:postgresql://postgres:5432/catalog_db
     username: postgres
-    password: postgres
+    password: password
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://discovery-service:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

@@ -15,7 +15,7 @@ import java.util.Objects;
 @Configuration
 public class KafkaConfig {
 
-    private final String bootstrapServers = "localhost:9092";
+    private final String bootstrapServers = "kafka:9092";
 
     @Bean
     public ProducerFactory<String, String> producerFactory(){
