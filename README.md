@@ -6,8 +6,6 @@ Demo project showcasing a **Java + Spring Boot microservices architecture** with
 
 ## 🚀 Architecture
 
-![Architecture](docs/architecture.png)
-
 ### Services:
 - **catalog-service** → Product CRUD (PostgreSQL)  
 - **user-service** → User management + JWT Authentication (MongoDB)  
@@ -53,13 +51,13 @@ docker-compose up
 
 ## 🌍 Main Endpoints
 
-Eureka Dashboard : http://localhost:8761
-API Gateway : http://localhost:8081
+- Eureka Dashboard : http://localhost:8761
+- API Gateway : http://localhost:8081
 
 Service	(URL via Gateway)
-User Service:	http://localhost:8081/users/...
-Catalog Service:	http://localhost:8081/catalog/...
-Order Service:	http://localhost:8081/orders/...
+- User Service:	http://localhost:8081/users/...
+- Catalog Service:	http://localhost:8081/catalog/...
+- Order Service:	http://localhost:8081/orders/...
 
 ---
 
@@ -71,9 +69,9 @@ Unit & integration tests with JUnit5 + Testcontainers:
 mvn verify
 ```
 
-PostgreSQL (catalog)
-MongoDB (users)
-Kafka (order events)
+- PostgreSQL (catalog)
+- MongoDB (users)
+- Kafka (order events)
 
 ---
 
@@ -86,8 +84,8 @@ GitHub Actions:
 - Push to DockerHub
 
 Required GitHub Secrets:
-DOCKERHUB_USERNAME → your DockerHub username
-DOCKERHUB_TOKEN → DockerHub access token
+- DOCKERHUB_USERNAME → your DockerHub username
+- DOCKERHUB_TOKEN → DockerHub access token
 
 ---
 
@@ -99,6 +97,6 @@ Eureka Dashboard (upcoming)
 
 ## 👤 Author
 
-Project by Maxime [maximeacd]
-📧 Email: maxime.accad@gmail.com
-🔗 LinkedIn: https://www.linkedin.com/in/maximeaccad/
+- Project by Maxime [maximeacd]
+- 📧 Email: maxime.accad@gmail.com
+- 🔗 LinkedIn: https://www.linkedin.com/in/maximeaccad/
