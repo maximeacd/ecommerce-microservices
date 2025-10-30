@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2563eb;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.8rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.navLinks a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navLinks a:hover {
+  color: #e2e8f0;
+}
+
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loginBtn, .signupBtn, .logoutBtn {
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.loginBtn {
+  background-color: #e2e8f0;
+  color: #2563eb;
+  border: 1px solid #e2e8f0;
+}
+
+.loginBtn:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+.signupBtn {
+  background-color: #e2e8f0;
+  color: #2563eb;
+  border: 1px solid #e2e8f0;
+}
+
+.signupBtn:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+.logoutBtn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.logoutBtn:hover {
+  background-color: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navLinks {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .authButtons {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+}

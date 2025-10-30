@@ -1,0 +1,24 @@
+.container {
+  min-height: 100vh;               
+  display: flex;                   
+  flex-direction: column;          
+  align-items: center;             
+  padding: 2rem;
+  background-color: black;       
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 4rem;
+  font-size: 2rem;
+  color: #f9f9f9;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;              
+  justify-items: center;           
+}

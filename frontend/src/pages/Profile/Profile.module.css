@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 80vh;
+  background-color: black;
+}
+
+.container h2 {
+  color: #f9fafb;
+}
+
+.card {
+  background-color: #2563eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  padding-top: 2rem;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.avatar {
+  background-color: #f9fafb;
+  color: #2563eb;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 auto 1.5rem;
+}
+
+.info p {
+  font-size: 1rem;
+  color: #f9fafb;
+  margin: 0.5rem 0;
+}
+
+.logoutBtn {
+  margin-top: 1.5rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background-color: #dc2626;
+}
+
+.error {
+  color: #b91c1c;
+  text-align: center;
+  background-color: #fee2e2;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.message {
+  text-align: center;
+  font-size: 1rem;
+  color: #4b5563;
+}
