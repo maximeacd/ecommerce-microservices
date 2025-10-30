@@ -8,6 +8,14 @@ spring:
     compatibility-verifier:
       enabled: false
     gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5174"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
       routes:
         - id: user-auth
           uri: http://user-service:8082
@@ -22,7 +30,7 @@ spring:
         - id: catalog-service
           uri: http://catalog-service:8083
           predicates:
-            - Path=/api/catalog/**
+            - Path=/api/products/**
 
         - id: order-service
           uri: http://order-service:8084
