@@ -29,4 +29,9 @@ public class OrderController {
     public Order getOrderById(@PathVariable Long id){
         return orderService.getOrderById(id);
     }
+
+    @GetMapping("/my-orders")
+    public List<Order> getMyOrders(@RequestParam (name = "userEmail") String userEmail) {
+        return orderService.getOrdersByUserEmail(userEmail);
+    }
 }
