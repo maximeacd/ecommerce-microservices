@@ -91,7 +91,7 @@ Required GitHub Secrets:
 
 ## 📸 Screenshots
 
-Eureka Dashboard (upcoming)
+<img width="1878" height="356" alt="image" src="https://github.com/user-attachments/assets/58cef27a-f22b-4f87-9d80-83d9097b710b" />
 
 ---
 
